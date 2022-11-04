@@ -39,7 +39,7 @@ public:
   /// @param k Key used to lookup for
   /// @return Value associated with key if it exists
   /// @throws std::runtime_error if the Key 'key' does not exist
-  [[nodiscard]] constexpr const Value& operator()(const Key k) const
+  [[nodiscard]] constexpr const Value& operator()(const Key& k) const
   {
     const auto iter = std::find_if(
         _storage.begin(), _storage.end(),
@@ -65,9 +65,7 @@ public:
           return l.key == key;
         });
 
-    if (iter != _storage.end())
-      return;
-    else
+    if (iter == _storage.end())
     {
       _storage[_count] = {key, value};
       ++_count;
