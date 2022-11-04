@@ -15,11 +15,11 @@ template <unsigned int width, unsigned int height>
   return lut;
 }
 
-static constexpr auto lut_1920_1080 = create_LUT<40, 20>();
+static constexpr auto lut_40_20 = create_LUT<40, 20>();
 
 int main()
 {
-  constexpr unsigned char result = std::get<0>(lut_1920_1080(20, 10));
+  constexpr unsigned char result = std::get<0>(lut_40_20(20, 10));
   std::cout << "Value should be 254: " << static_cast<unsigned int>(result) << std::endl;
   return EXIT_SUCCESS;
 }
