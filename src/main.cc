@@ -4,7 +4,18 @@
 // Project includes
 #include <constexpr-lookup-table.h>
 
-static constexpr auto lut_1920_1080 = constexpr_lookup_table::create_LUT<40, 20>();
+using PixelCoordinateType = std::tuple<unsigned int, unsigned int>;
+using PixelValueType = std::tuple<unsigned char, unsigned char, unsigned char>;
+
+template <unsigned int width, unsigned int height>
+[[nodiscard]] constexpr auto create_LUT()
+{
+  constexpr_lookup_table::LUT<PixelCoordinateType, PixelValueType, width * height> lut;
+  lut.add(PixelCoordinateType{20, 10}, PixelValueType({254, 255, 253}));
+  return lut;
+}
+
+static constexpr auto lut_1920_1080 = create_LUT<40, 20>();
 
 int main()
 {

@@ -6,9 +6,20 @@ class ConstexprLookupTableTest : public ::testing::Test
 {
 };
 
+using PixelCoordinateType = std::tuple<unsigned int, unsigned int>;
+using PixelValueType = std::tuple<unsigned char, unsigned char, unsigned char>;
+
+template <unsigned int width, unsigned int height>
+[[nodiscard]] constexpr auto create_LUT()
+{
+  constexpr_lookup_table::LUT<PixelCoordinateType, PixelValueType, width * height> lut;
+  lut.add(PixelCoordinateType{20, 10}, PixelValueType({254, 255, 253}));
+  return lut;
+}
+
 TEST_F(ConstexprLookupTableTest, Test1)
 {
-  constexpr auto lut = constexpr_lookup_table::create_LUT<40, 20>();
+  constexpr auto lut = create_LUT<40, 20>();
 
   constexpr auto v0 = std::get<0>(lut(20, 10));
   constexpr auto v1 = std::get<1>(lut(20, 10));
