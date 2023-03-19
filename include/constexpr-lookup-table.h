@@ -65,7 +65,7 @@ public:
           return l.key == key;
         });
 
-    if (iter == _storage.end())
+    if (iter == _storage.end() && _count < S)
     {
       _storage[_count] = {key, value};
       ++_count;
