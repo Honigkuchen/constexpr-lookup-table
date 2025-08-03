@@ -66,7 +66,7 @@ public:
           return; // Key already exists with the same value
         else
           static_assert(
-              false,
+              kv.second == value,
               "Key already exists with a different value. Please use a different key or value.");
       }
     }
