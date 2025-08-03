@@ -2,8 +2,8 @@
 #ifndef CLT_DEFINES_HPP_
 #define CLT_DEFINES_HPP_
 
-#if __cplusplus < 201703L
-#error "Library is intended to be compiled with C++17 or later."
+#if __cplusplus < 202002L
+#error "Library is intended to be compiled with C++20 or later."
 #endif
 
 #if __cplusplus >= 201103L
